@@ -28,7 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
+//import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 /**
  * @author Jochen Gatternig
@@ -100,17 +100,18 @@ public class FindTermsInWord {
 				for (LinkedHashSet<String> set : terms) {
 					for (String term : set) {
 						for (XWPFParagraph para : paras) {
-							List<XWPFRun> runs = para.getRuns();
+							String paraText=para.getText().toLowerCase();
+							/*List<XWPFRun> runs = para.getRuns();
 							for (XWPFRun run : runs) {
-								String runText = run.getText(0);
-								if (runText != null && run.getText(0).toLowerCase().contains(term)) {
+								String runText = run.getText(0);*/
+								if (paraText != null && paraText.contains(term)) {
 									System.out.println("Found " + term);
 									addTermToHash(term);
 								}
 							}
 						}
 					}
-				}
+				//}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
